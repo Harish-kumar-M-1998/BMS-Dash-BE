@@ -23,4 +23,18 @@ router.post("/", async (req, res) => {
     }
 });
 
+router.delete("/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedOrder = await WorkOrder.findByIdAndDelete(id);
+        
+        if (!deletedOrder) {
+            return res.status(404).json({ message: "Work order not found" });
+        }
+        
+        res.json({ message: "Work order deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 module.exports = router;
