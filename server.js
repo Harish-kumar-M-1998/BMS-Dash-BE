@@ -41,6 +41,31 @@ app.use('/api/activities', activityRoutes);
 app.use("/api/weather", weatherRoutes);
 app.use("/api/cases", caseRoutes);
 
+app.get('/', (req, res) => {
+  res.send(`
+    <html>
+      <head>
+        <style>
+          body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>Server is running</h1>
+      </body>
+    </html>
+  `);
+});
+
+
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
